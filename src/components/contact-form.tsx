@@ -4,7 +4,6 @@ import { AlertCircle, Check } from "lucide-react";
 import Form from "next/form";
 import * as React from "react";
 
-import { contactFormAction } from "@/actions/contact";
 import { cn } from "@/lib/utils";
 
 import { Button } from "./ui/button";
@@ -12,6 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
+import { contactFormAction } from "@/lib/actions/contact";
 
 export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
   const [state, action, pending] = React.useActionState(contactFormAction, {

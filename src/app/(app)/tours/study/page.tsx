@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { z } from "zod";
 
 import { TourCards, TourFilter } from "@/components/tour";
-import { getCountTours, getTours } from "@/data/services/tours";
+
 import { TourProvider } from "@/providers/tour";
+import { getCountTours, getTours } from "@/lib/data/tours";
 
 export const metadata: Metadata = {
   description: "ค้นพบแพ็คเกจการศึกษาที่น่าสนใจ เราคัดสรรสถานที่ศึกษาที่น่าสนใจมาให้คุณได้เลือกสรร",

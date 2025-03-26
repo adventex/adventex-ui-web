@@ -28,7 +28,7 @@ const socialLinks = [
 ];
 
 const contactInfo = [
-  { icon: Phone, text: "+66 64 213 0656" },
+  { icon: Phone, text: "+66 841057598" },
   { icon: Mail, text: "support@advantex.com" },
   { icon: MapPin, text: "121/2 เลขที่ 3 ต.เวียง อ.เชียงแสน จ.เชียงราย 57120" },
 ];
@@ -45,7 +45,7 @@ export function SiteFooter() {
               <Link href="/" className="mb-4 block text-xl font-bold uppercase text-primary">
                 adventex international group co., ltd.
               </Link>
-              <p className="mb-6 max-w-[30ch] text-muted-foreground">ทะเบียนพานิชย์เลขที่ 0575567001670</p>
+              <p className="mb-6 max-w-[30ch] text-muted-foreground">ทะเบียนพานิชย์เลขที่ 0575567001679</p>
               <div className="space-y-3">
                 {contactInfo.map((item, index) => {
                   return (
