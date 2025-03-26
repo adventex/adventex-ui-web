@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Gallery {
+  id     String @id @default(uuid())
+  src    String
+  alt    String
+  width  Int
+  height Int
+}
+
+model University {
+  id         String   @id @default(cuid())
+  name       String
+  aka        String?
+  coverImage String
+  images     String[]
+  about      About[]
+  tours      Tour[]
+}
+
+model About {
+  id           Int        @id @default(autoincrement())
+  title        String
+  items        String[]
+  university   University @relation(fields: [universityId], references: [id])
+  universityId String
+}
+
+model Tour {
+  id           String      @id @default(cuid())
+  title        String
+  description  String
+  coverImage   String
+  defaultPrice Float
+  duration     String
+  startDate    DateTime
+  endDate      DateTime
+  highlights   String[]
+  location     String
+  period       String
+  season       String
+  tourCode     String
+  type         String
+  university   University  @relation(fields: [universityId], references: [id])
+  universityId String
+  itinerary    Itinerary[]
+  rooms        Room[]
+}
+
+model Itinerary {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  week        String
+  activities  String[]
+  tour        Tour     @relation(fields: [tourId], references: [id])
+  tourId      String
+}
+
+model Room {
+  id     Int    @id @default(autoincrement())
+  name   String
+  price  Float
+  tour   Tour   @relation(fields: [tourId], references: [id])
+  tourId String
+}
