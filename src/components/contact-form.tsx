@@ -52,7 +52,7 @@ export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
             <Input
               id="name"
               name="name"
-              placeholder="สมชาย ใจดี"
+              placeholder="ชื่อของคุณ..."
               className="rounded-md shadow-none group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
               aria-invalid={!!state.errors?.name}
@@ -72,7 +72,7 @@ export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
             <Input
               id="email"
               name="email"
-              placeholder="somchai@example.com"
+              placeholder="อีเมลของคุณ..."
               className="rounded-md shadow-none group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
               aria-invalid={!!state.errors?.email}
