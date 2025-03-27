@@ -128,7 +128,6 @@ const TestimonialCard: React.FC<TestimonailCardProps> = ({ author, text }) => {
         </Avatar>
         <div className="flex flex-col items-start">
           <h3 className="text-base font-semibold leading-none">{author.name}</h3>
-          <p className="text-sm text-muted-foreground">{author.handle}</p>
         </div>
       </div>
       <p className="mt-4 text-sm text-muted-foreground">{text}</p>
