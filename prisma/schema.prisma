@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Calendar {
+  id     String   @id @default(cuid())
+  month  String
+  dates  String[]
+  tour   Tour     @relation(fields: [tourId], references: [id])
+  tourId String
+}
+
 model Gallery {
   id     String @id @default(uuid())
   src    String
@@ -48,6 +56,8 @@ model Tour {
   season       String
   tourCode     String
   type         String
+  calendars    Calendar[]
+  content      String?
   university   University  @relation(fields: [universityId], references: [id])
   universityId String
   itinerary    Itinerary[]
