@@ -1,12 +1,13 @@
 import { Filter, LayoutGrid, List } from "lucide-react";
 
 import { SparklesText } from "@/components/magicui/sparkles-text";
-import { TourSkeleton } from "@/components/tour";
+
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { TourSkeleton } from "@/modules/tours/components/skeleton/TourSkeleton";
 
 export default function Loading() {
   return (

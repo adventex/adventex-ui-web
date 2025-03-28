@@ -1,5 +1,8 @@
-import { RelatedToursSkeleton, TabsContentSkeleton, TourImageSkeleton, TourInfoSkeleton } from "@/components/tour";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RelatedToursSkeleton } from "@/modules/tours/components/skeleton/RelatedToursSkeleton";
+import { TabsContentSkeleton } from "@/modules/tours/components/skeleton/TabsContentSkeleton";
+import { TourImageSkeleton } from "@/modules/tours/components/skeleton/TourImageSkeleton";
+import { TourInfoSkeleton } from "@/modules/tours/components/skeleton/TourInfoSkeleton";
 
 export default function Loading() {
   return (

@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 
 import { Activity, Box, PanelsTopLeft } from "lucide-react";
 
-import { RelatedTours, TourImage, TourInfo } from "@/components/tour";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getRelatedTour, getTour } from "@/lib/data/tours";
 import { getUniversity } from "@/lib/data/university";
+import { TourImage } from "@/modules/tours/components/TourImage";
+import { TourInfo } from "@/modules/tours/components/TourInfo";
+import { RelatedTours } from "@/modules/tours/components/RelatedTours";
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug: tourId } = await props.params;
