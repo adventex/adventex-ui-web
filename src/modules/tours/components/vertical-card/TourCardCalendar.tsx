@@ -28,7 +28,7 @@ export const TourCardCalendar = ({
 
 const MonthLabel = ({ month }: { month: string }) => {
   return (
-    <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-100">
+    <Badge variant="secondary" className="bg-[#004EB4] text-primary-foreground hover:text-[#004EB4]">
       {month}
     </Badge>
   );

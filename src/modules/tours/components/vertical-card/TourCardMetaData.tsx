@@ -15,7 +15,7 @@ export const TourCardMetaData = ({
         <span className="font-medium">{period}</span>
       </MetadataItem>
 
-      <MetadataItem label="มหา'ลัย">
+      <MetadataItem label="มหาลัย">
         <span className="text-center font-medium text-primary">{universityId === "1" ? "HIT" : "HRBNU"}</span>
       </MetadataItem>
 
