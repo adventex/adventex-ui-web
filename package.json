@@ -21,7 +21,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@next/third-parties": "^15.2.1",
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.5.0",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
     "@radix-ui/react-avatar": "^1.1.2",
@@ -90,5 +90,8 @@
     "tsx": "^4.19.2",
     "typescript": "^5"
   },
-  "packageManager": "npm@11.1.0+sha512.acf301ad9b9ddba948fcb72341e2f0fcae477f56a95cc2a092934d133a7461062633cefbf93d5934a3dc0768674e2edee9f04dcfcc4bb4c327ff0e3a7d552a1b"
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
 }
