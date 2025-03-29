@@ -277,14 +277,14 @@ export const featuredTours = [
     calendars: [
       {
         id: "1",
-        month: "มิ.ย.",
-        dates: ["30"],
+        month: "มี.ค.",
+        dates: ["23-31"],
         tourId: "19",
       },
       {
         id: "2",
-        month: "ก.ค.",
-        dates: ["1-27"],
+        month: "เม.ย.",
+        dates: ["1-12"],
         tourId: "19",
       },
     ],
@@ -404,14 +404,14 @@ export const featuredTours = [
     calendars: [
       {
         id: "1",
-        month: "เม.ษ.",
-        dates: ["1 - 30"],
+        month: "มี.ค.",
+        dates: ["1 - 31"],
         tourId: "6",
       },
       {
         id: "2",
-        month: "พ.ค.",
-        dates: ["1 - 31"],
+        month: "ก.ย.",
+        dates: ["1 - 30"],
         tourId: "6",
       },
     ],
