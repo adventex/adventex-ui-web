@@ -1,10 +1,10 @@
-import * as React from "react";
-
+import { cache } from "react";
 import { connection } from "next/server";
 
 import { z } from "zod";
 
 import { prisma } from "@/db";
+import type { Tour } from "@prisma/client";
 
 const AVAILABLE_DURATION = ["short", "long"] as const;
 
@@ -151,55 +151,19 @@ export const getCountTours = async (filters: Filters | undefined) => {
   });
 };
 
-export const getTour = React.cache((id: string) => {
+export const getTour = cache(async (id: string) => {
   return prisma.tour.findUnique({
-    select: {
-      coverImage: true,
-      defaultPrice: true,
-      description: true,
-      endDate: true,
-      highlights: true,
-      id: true,
-      itinerary: {
-        select: {
-          activities: true,
-          description: true,
-          title: true,
-          week: true,
-        },
-      },
-      location: true,
-      period: true,
-      startDate: true,
-      title: true,
-      type: true,
-      universityId: true,
-    },
     where: {
       id,
+    },
+    include: {
+      itinerary: true,
     },
   });
 });
 
-export const getRelatedTour = (
-  tour: {
-    type: string;
-    id: string;
-    itinerary: {
-      title: string;
-      description: string;
-      week: string;
-      activities: string[];
-    }[];
-    coverImage: string;
-    title: string;
-    description: string;
-    defaultPrice: number;
-    startDate: Date;
-    endDate: Date;
-    highlights: string[];
-    period: string;
-  },
+export const getRelatedTour = async (
+  tour: Tour,
   university: {
     name: string;
     id: string;
@@ -210,7 +174,6 @@ export const getRelatedTour = (
   }
 ) => {
   return prisma.tour.findMany({
-    take: 3,
     where: {
       AND: [
         {
@@ -230,6 +193,10 @@ export const getRelatedTour = (
         },
       ],
     },
+    include: {
+      calendars: true,
+    },
+    take: 3,
   });
 };
 
@@ -251,6 +218,7 @@ export const featuredTours = [
       "ค่าหอพัก",
       "วีซ่านักเรียน",
     ],
+    content: "",
     id: "19",
     itinerary: [
       {
@@ -338,6 +306,7 @@ export const featuredTours = [
       "ค่าหอพัก",
       "วีซ่านักเรียน",
     ],
+    content: "",
     id: "2",
     itinerary: [
       {
@@ -414,6 +383,7 @@ export const featuredTours = [
       "ค่าหอพัก",
       "วีซ่านักเรียน",
     ],
+    content: "",
     id: "6",
     itinerary: [],
     location: "Harbin, China",

@@ -1,44 +1,35 @@
-import { Button } from "@/components/ui/button";
-import { Activity, MapPin } from "lucide-react";
 import Link from "next/link";
 
-export const TourInfo = ({
-  tour,
-}: {
-  tour: {
-    id: string;
-    itinerary: {
-      title: string;
-      description: string;
-      week: string;
-      activities: string[];
-    }[];
-    coverImage: string;
-    title: string;
-    description: string;
-    defaultPrice: number;
-    startDate: Date;
-    endDate: Date;
-    highlights: string[];
-    period: string;
-    location: string;
-    type: string;
-  };
-}) => {
+import { Button } from "@/components/ui/button";
+
+import type { Tour } from "@prisma/client";
+
+export const TourInfo = ({ tour }: { tour: Tour }) => {
   return (
-    <div className="space-y-6">
+    <div className="flex h-full flex-col justify-between space-y-6 md:col-span-2">
       <div>
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <MapPin className="size-4" />
-          <span>{tour.location}</span>
-        </div>
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{tour.title}</h1>
-          <p className="mt-2 text-muted-foreground">{tour.description}</p>
-        </header>
+        <h1 className="text-3xl font-bold tracking-tight lg:text-4xl">{tour.title}</h1>
       </div>
 
-      <div className="rounded-lg border border-primary p-6">
+      <div className="grid grid-cols-3 gap-4 divide-x divide-border text-sm">
+        <MetadataItem label="จำนวนวัน">
+          <span className="text-lg font-medium">{tour.period}</span>
+        </MetadataItem>
+
+        <MetadataItem label="มหาลัย">
+          <span className="text-lg font-medium text-primary">{tour.universityId === "1" ? "HIT" : "HRBNU"}</span>
+        </MetadataItem>
+
+        <MetadataItem label="รหัสทัวร์">
+          <span className="text-lg font-medium text-primary">{tour.tourCode}</span>
+        </MetadataItem>
+      </div>
+
+      <div>
+        <p className="mt-2 text-muted-foreground">{tour.description}</p>
+      </div>
+
+      <div className="rounded-lg border border-primary p-6 md:mt-auto">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-muted-foreground">ราคาเข้าร่วมโครงการ</p>
@@ -48,22 +39,17 @@ export const TourInfo = ({
             <Link href="/contact">สมัครเรียน</Link>
           </Button>
         </div>
-        <p className="text-sm text-muted-foreground">ราคารวมทุกอย่าง</p>
+        <div className="text-sm text-muted-foreground">ราคารวมทุกอย่าง</div>
       </div>
-
-      <section className="flex flex-col gap-4">
-        <h3 className="text-2xl font-semibold tracking-tight">ราคาค่าโครงการรวม</h3>
-        <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
-          {tour.highlights.map((highlight, index) => {
-            return (
-              <li key={index} className="flex items-center gap-2">
-                <Activity className="size-4 text-primary" />
-                <span>{highlight}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
     </div>
   );
 };
+
+function MetadataItem({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-y-px py-2">
+      <div className="text-muted-foreground">{label}</div>
+      {children}
+    </div>
+  );
+}

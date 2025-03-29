@@ -9,7 +9,7 @@ export default function Loading() {
     <div className="container-wrapper">
       <div className="container py-8">
         <article>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <TourImageSkeleton />
             <TourInfoSkeleton />
           </div>

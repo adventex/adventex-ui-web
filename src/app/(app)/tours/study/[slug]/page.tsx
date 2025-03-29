@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Activity, Box, PanelsTopLeft } from "lucide-react";
+import {
+  Activity,
+  Box,
+  CircleAlert,
+  CircleCheck,
+  CircleMinus,
+  Clock,
+  PanelsTopLeft,
+  Sparkle,
+  Tags,
+} from "lucide-react";
+
+import { getRelatedTour, getTour } from "@/lib/data/tours";
+import { getUniversity } from "@/lib/data/university";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getRelatedTour, getTour } from "@/lib/data/tours";
-import { getUniversity } from "@/lib/data/university";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+import { RelatedTours } from "@/modules/tours/components/RelatedTours";
 import { TourImage } from "@/modules/tours/components/TourImage";
 import { TourInfo } from "@/modules/tours/components/TourInfo";
-import { RelatedTours } from "@/modules/tours/components/RelatedTours";
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug: tourId } = await props.params;
@@ -57,13 +70,103 @@ export default async function TourStudySlugPage(props: { params: Promise<{ slug:
   return (
     <div className="container-wrapper">
       <div className="container py-8">
-        <article>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <TourImage images={[tour.coverImage, ...university.images]} />
             <TourInfo tour={tour} />
           </div>
 
-          <Tabs defaultValue="itinerary" className="mt-12">
+          <Table className="border-y">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="py-4">วันที่เดินทาง</TableHead>
+                <TableHead className="py-4">ห้องเดี่ยว</TableHead>
+                <TableHead className="py-4">ห้องเดี่ยว</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[1, 2, 3, 4].map((i) => (
+                <TableRow key={i}>
+                  <TableCell className="flex items-start gap-x-2 py-4">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                    <span>29 มี.ค. 68</span>
+                    <span>-</span>
+                    <span>3 เม.ย. 68</span>
+                    <Tags className="h-4 w-4 text-primary" />
+                  </TableCell>
+                  <TableCell className="py-4 font-medium text-primary">16,999 บาท</TableCell>
+                  <TableCell className="py-4 font-medium text-primary">16,999 บาท</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+
+          <div className="space-y-3">
+            <div className="text-xl font-semibold">ไฮไลท์โปรแกรมทัวร์</div>
+
+            <DetailItem icon={<Sparkle className="mt-0.5 size-4" />} label="ไฮไลท์" content={tour.content} />
+            <div className="grid grid-cols-2 gap-x-2">
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 font-medium">
+                  <CircleAlert className="mt-0.5 size-4" />
+                  <span>รวมค่าบริการ</span>
+                </div>
+                <ul className="grid grid-cols-2 gap-2 text-muted-foreground">
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าตั๋วเครื่องบินไป-กลับ</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าลงทะเบียนเรียน</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าประกันอุบัติเหตุ</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่ารถรับส่งสนามบิน</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าซิม</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>Wifi-VPN</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าวีซ่า</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleCheck size={12} className="mt-1 size-3" />
+                    <span>ค่าหอพัก</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 text-sm font-medium">
+                  <CircleAlert className="mt-0.5 size-4" />
+                  <span>ไม่รวมค่าบริการ</span>
+                </div>
+                <ul className="grid gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-x-2">
+                    <CircleMinus size={12} className="mt-1 size-3" />
+                    <span>ค่าใช้จ่ายส่วนตัว</span>
+                  </li>
+                  <li className="flex items-start gap-x-2">
+                    <CircleMinus size={12} className="mt-1 size-3" />
+                    <span>ค่าอาหารในแต่ละมื้อที่ท่านต้องออกค่าใช้จ่ายเอง</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <Tabs defaultValue="itinerary">
             <ScrollArea>
               <TabsList className="relative mb-3 h-auto w-full gap-0.5 bg-transparent p-0 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-border">
                 <TabsTrigger
@@ -162,7 +265,20 @@ export default async function TourStudySlugPage(props: { params: Promise<{ slug:
           </Tabs>
 
           <RelatedTours tours={relatedTour} />
-        </article>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DetailItem({ icon, label, content }: { icon: React.ReactNode; label: string; content: string | null }) {
+  return (
+    <div className="flex items-start gap-2">
+      <div>{icon}</div>
+      <div className="space-x-px">
+        <span className="font-medium">{label}</span>
+        <span>:</span>
+        <span className="text-muted-foreground">{content}</span>
       </div>
     </div>
   );

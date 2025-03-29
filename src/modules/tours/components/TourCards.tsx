@@ -28,6 +28,7 @@ export const TourCards = ({
     period: string;
     tourCode: string;
     universityId: string;
+    content: string;
     calendars: {
       month: string;
       id: string;

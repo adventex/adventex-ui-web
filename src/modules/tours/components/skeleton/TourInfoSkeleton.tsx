@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const TourInfoSkeleton = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:col-span-2">
       <div>
         <Skeleton className="h-4 w-1/4" />
         <Skeleton className="mt-2 h-8 w-3/4" />
