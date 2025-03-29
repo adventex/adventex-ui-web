@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { z } from "zod";
 
 import { GalleryImages, GalleryPagination } from "@/components/gallery";
-import { getCountGallery, getGallery } from "@/data/services/gallery";
+import { getCountGallery, getGallery } from "@/lib/data/gallery";
 import { GalleryProvider } from "@/providers/gallery";
 
 const filterSchema = z.object({
